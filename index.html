@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESR Community</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <img src="https://ibb.co.com/LgqXPm9" alt="ESR Logo" class="logo">
+            <h1>ESR Community</h1>
+            <p>Earn rewards and coins by completing tasks!</p>
+        </header>
+        <main>
+            <div class="balance-section">
+                <h2>Welcome, <span id="username"></span></h2>
+                <p>Your Balance: <strong id="balance">0 ESR</strong></p>
+            </div>
+            <div class="task-section">
+                <h3>Complete Tasks</h3>
+                <div id="task-container">
+                    <div class="task">
+                        <p>Watch YouTube Video</p>
+                        <input type="text" id="verificationCode" placeholder="Enter code">
+                        <button id="verifyTaskBtn">Verify</button>
+                    </div>
+                </div>
+            </div>
+            <div class="rewards-section">
+                <h3>Daily Rewards</h3>
+                <button id="dailyRewardBtn">Watch Ad (10 ESR)</button>
+                <p id="rewardLimit">You can watch 5 ads per day</p>
+            </div>
+        </main>
+        <footer>
+            <p>Powered by ESR Community</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
