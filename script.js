@@ -12,28 +12,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 const db = firebase.database();
 
+// Telegram WebApp Initialization
+const tg = window.Telegram.WebApp;
+const user = tg.initDataUnsafe.user;
+
 // Elements
-const userName = document.getElementById('user-name');
 const userBalance = document.getElementById('user-balance');
 const channelList = document.getElementById('channel-list');
 const videoList = document.getElementById('video-list');
 const submitForm = document.getElementById('submit-form');
 
-// Auto Login
-auth.onAuthStateChanged(user => {
-    if (user) {
-        userName.textContent = `Welcome, ${user.displayName || 'User'}`;
-        initializeUser(user.uid);
-        getUserBalance(user.uid);
-        loadChannels();
-        loadVideos();
-    } else {
-        window.location.href = "login.html";
-    }
-});
+// Initialize User
+const userId = user.id.toString();
+initializeUser(userId);
+getUserBalance(userId);
+loadChannels();
+loadVideos();
 
 // Initialize User Data
 function initializeUser(uid) {
@@ -97,7 +93,6 @@ submitForm.addEventListener('submit', (e) => {
     const title = document.getElementById('title').value;
     const url = document.getElementById('url').value;
 
-    const userId = auth.currentUser.uid;
     const refPath = type === 'channel' ? 'channels' : 'videos';
     const newEntry = {
         name: title,
@@ -120,7 +115,6 @@ submitForm.addEventListener('submit', (e) => {
 
 // Subscribe to Channel
 function subscribe(channelId) {
-    const userId = auth.currentUser.uid;
     db.ref(`users/${userId}/balance`).transaction(balance => {
         return (balance || 0) + 20;
     }).then(() => {
@@ -132,7 +126,6 @@ function subscribe(channelId) {
 
 // Watch Video
 function watch(videoId) {
-    const userId = auth.currentUser.uid;
     db.ref(`users/${userId}/balance`).transaction(balance => {
         return (balance || 0) + 20;
     }).then(() => {
