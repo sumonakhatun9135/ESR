@@ -3,54 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grow YouTube - Sub4Sub & Watch4Watch</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Grow YouTube</h1>
-        <p>Earn Coins by Subscribing and Watching Videos!</p>
-    </header>
-
-    <div id="user-info">
-        <p id="user-name">Welcome!</p>
-        <p id="user-balance">Balance: 0 Coins</p>
-        <button id="logoutBtn">Logout</button>
-    </div>
-
-    <div id="submit-section">
-        <h2>Submit Your Channel or Video</h2>
-        <form id="submit-form">
-            <label for="type">Type:</label>
-            <select id="type" required>
-                <option value="channel">Channel</option>
-                <option value="video">Video</option>
-            </select>
-            <br>
-            <label for="title">Title:</label>
-            <input type="text" id="title" placeholder="Enter title" required>
-            <br>
-            <label for="url">URL:</label>
-            <input type="url" id="url" placeholder="Enter URL" required>
-            <br>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-
-    <div id="content">
-        <div id="channels">
-            <h2>Subscribe to Earn Coins</h2>
-            <ul id="channel-list"></ul>
-        </div>
-        <div id="videos">
-            <h2>Watch Videos to Earn Coins</h2>
-            <ul id="video-list"></ul>
-        </div>
-    </div>
-
+    <title>Grow YouTube - Telegram Mini App</title>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #dashboard {
+            padding: 20px;
+        }
+        #user-balance {
+            color: green;
+            font-weight: bold;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="dashboard">
+        <h1>Welcome to Grow YouTube</h1>
+        <h2 id="user-balance">Balance: Loading...</h2>
+
+        <form id="submit-form">
+            <select id="type">
+                <option value="channel">Submit Channel</option>
+                <option value="video">Submit Video</option>
+            </select>
+            <input id="title" type="text" placeholder="Title" required />
+            <input id="url" type="url" placeholder="URL" required />
+            <button type="submit">Submit</button>
+        </form>
+
+        <h3>Channels to Subscribe:</h3>
+        <ul id="channel-list"></ul>
+
+        <h3>Videos to Watch:</h3>
+        <ul id="video-list"></ul>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
