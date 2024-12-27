@@ -1,54 +1,51 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
     background-color: #f4f4f4;
 }
 
-.container {
-    text-align: center;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-button {
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    background-color: #4CAF50;
+header {
+    background-color: #333;
     color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-input {
-    padding: 8px;
-    margin: 10px 0;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#status-message {
-    margin-top: 10px;
-    color: green;
+    padding: 20px;
+    text-align: center;
 }
 
 #user-info {
-    margin-top: 20px;
     display: none;
+    margin-top: 10px;
 }
 
-h1 {
-    color: #333;
+#home {
+    padding: 20px;
+}
+
+#subscribedChannels, #watchedVideos {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    background-color: #ddd;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
 }
