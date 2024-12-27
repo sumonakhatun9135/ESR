@@ -1,4 +1,4 @@
-// Firebase Configuration (আপনার দেওয়া কোড)
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDpzM7EACh81Dj99bSAB9hXE_I_lMItKD8",
     authDomain: "view-b81bc.firebaseapp.com",
@@ -26,6 +26,7 @@ const submitForm = document.getElementById('submit-form');
 auth.onAuthStateChanged(user => {
     if (user) {
         userName.textContent = `Welcome, ${user.displayName || 'User'}`;
+        initializeUser(user.uid);
         getUserBalance(user.uid);
         loadChannels();
         loadVideos();
@@ -34,9 +35,20 @@ auth.onAuthStateChanged(user => {
     }
 });
 
+// Initialize User Data
+function initializeUser(uid) {
+    const userRef = db.ref(`users/${uid}`);
+    userRef.once('value').then(snapshot => {
+        if (!snapshot.exists()) {
+            userRef.set({ balance: 0 });
+        }
+    });
+}
+
 // Fetch User Balance
 function getUserBalance(uid) {
-    db.ref(`users/${uid}/balance`).once('value').then(snapshot => {
+    const balanceRef = db.ref(`users/${uid}/balance`);
+    balanceRef.on('value', snapshot => {
         const balance = snapshot.val() || 0;
         userBalance.textContent = `Balance: ${balance} Coins`;
     });
